@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header">
+        <h4>{{ task.title }}</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Project:</strong> {{ task.project.title }}</p>
+        <p><strong>Description:</strong> {{ task.description }}</p>
+        <p><strong>Assigned To:</strong> {{ task.assigned_to }}</p>
+        <p><strong>Assigned By:</strong> {{ task.assigned_by }}</p>
+        <p><strong>Priority:</strong> {{ task.priority }}</p>
+        <p><strong>Status:</strong> {{ task.status }}</p>
+        <p><strong>Due Date:</strong> {{ task.due_date }}</p>
+
+        {% if task.expected_completion_date %}
+            <p><strong>Expected Completion Date:</strong> {{ task.expected_completion_date }}</p>
+        {% endif %}
+
+        {% if task.progress_note %}
+            <div class="alert alert-info">
+                <strong>Progress Note:</strong><br>
+                {{ task.progress_note }}
+            </div>
+        {% endif %}
+
+        {% if task.issue_note %}
+            <div class="alert alert-warning">
+                <strong>Issue Note:</strong><br>
+                {{ task.issue_note }}
+            </div>
+        {% endif %}
+
+        <div class="mt-3">
+            <a href="{% url 'task_list' %}" class="btn btn-secondary btn-sm">Back</a>
+
+            {% if user.role == 'user' and task.assigned_to == request.user %}
+                <a href="{% url 'task_update' task.id %}" class="btn btn-warning btn-sm">Update Progress</a>
+            {% endif %}
+
+            {% if user.role == 'admin' or user.role == 'manager' %}
+                <a href="{% url 'task_update' task.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'task_delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Reports Dashboard</h2>
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Total Users</h5><h3>{{ total_users }}</h3></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Total Projects</h5><h3>{{ total_projects }}</h3></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Total Tasks</h5><h3>{{ total_tasks }}</h3></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Completed</h5><h3>{{ completed_tasks }}</h3></div></div>
+    </div>
+</div>
+
+<div class="row g-3 mt-2">
+    <div class="col-md-4">
+        <div class="card shadow-sm"><div class="card-body"><h5>Pending</h5><h3>{{ pending_tasks }}</h3></div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm"><div class="card-body"><h5>In Progress</h5><h3>{{ in_progress_tasks }}</h3></div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm"><div class="card-body"><h5>Overdue</h5><h3>{{ overdue_tasks }}</h3></div></div>
+    </div>
+</div>
+{% endblock %}

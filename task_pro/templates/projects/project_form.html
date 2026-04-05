@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header"><h4>{{ title }}</h4></div>
+    <div class="card-body">
+        
+<form method="post">
+     {% csrf_token %}
+
+     <div class="mb-3">
+        <label class="form-label">Title</label>
+        {{ form.title|add_class:"form-control" }}
+     </div>
+
+     <div class="mb-3">
+        <label class="form-label">Description</label>
+        {{ form.description|add_class:"form-control" }}
+     </div>
+
+     <div class="mb-3">
+        <label class="form-label">Assigned Manager</label>
+        {{ form.assigned_manager|add_class:"form-select" }}
+     </div>
+
+     <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        {{ form.start_date|add_class:"form-control" }}
+     </div>
+
+     <div class="mb-3">
+        <label class="form-label">End Date</label>
+        {{ form.end_date|add_class:"form-control" }}
+     </div>
+
+     <div class="mb-3">
+        <label class="form-label">Status</label>
+        {{ form.status|add_class:"form-select" }}
+     </div>
+
+     <button type="submit" class="btn btn-success">Save</button>
+     <a href="{% url 'project_list' %}" class="btn btn-secondary">Back</a>
+</form>
+    </div>
+</div>
+{% endblock %}

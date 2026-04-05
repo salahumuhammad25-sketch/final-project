@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h3>{{ project.title }} - Progress</h3>
+            <p>{{ project.description }}</p>
+
+            <p><strong>Manager:</strong> {{ project.assigned_manager }}</p>
+            <p><strong>Status:</strong> {{ project.status }}</p>
+
+            <hr>
+
+            <h5>User Project Progress Update</h5>
+
+            <p>
+                <strong>Project Progress:</strong>
+                {% if project.project_progress == 'completed' %}
+                    <span class="badge bg-success">Completed</span>
+                {% elif project.project_progress == 'ongoing' %}
+                    <span class="badge bg-primary">Ongoing</span>
+                {% elif project.project_progress == 'pending' %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                {% elif project.project_progress == 'due' %}
+                    <span class="badge bg-danger">Due</span>
+                {% else %}
+                    <span class="badge bg-secondary">{{ project.project_progress }}</span>
+                {% endif %}
+            </p>
+
+            <p><strong>User Note:</strong> {{ project.project_notes|default:"No update given." }}</p>
+            <p><strong>Updated By:</strong> {{ project.updated_by_user|default:"No user update yet." }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

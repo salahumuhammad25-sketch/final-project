@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1 style="color:red;">TaskPro </h1>
+<style>
+    .hero-section {
+        min-height: 85vh;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        border-radius: 20px;
+        padding: 80px 40px;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    .hero-text {
+        font-size: 1.2rem;
+        margin-top: 15px;
+        opacity: 0.95;
+    }
+
+    .btn-custom {
+        padding: 10px 25px;
+        border-radius: 30px;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+
+    .feature-card {
+        border: none;
+        border-radius: 18px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transition: 0.3s ease;
+        height: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .feature-section {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="hero-section">
+        <div>
+            <h1 class="hero-title">TaskPro</h1>
+            <p class="hero-text">
+                Role Based Project and Task Management System built with Django.
+            </p>
+
+            <a href="{% url 'login' %}" class="btn btn-light btn-custom">Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-outline-light btn-custom">Signup</a>
+        </div>
+    </div>
+
+    <div class="row feature-section g-4">
+        <div class="col-md-4">
+            <div class="card feature-card p-4">
+                <h4>📋 Task Management</h4>
+                <p>Create, assign and monitor tasks easily.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card p-4">
+                <h4>👥 Role Based Access</h4>
+                <p>Admin, manager and user access control.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card feature-card p-4">
+                <h4>📊 Reports & Dashboard</h4>
+                <p>Track progress, pending work and completed tasks.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

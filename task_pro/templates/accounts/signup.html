@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .signup-wrapper {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 15px;
+        background: linear-gradient(135deg, #eef2ff, #f8fbff);
+    }
+
+    .signup-card {
+        width: 100%;
+        max-width: 700px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 35px;
+    }
+
+    .signup-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .signup-subtitle {
+        text-align: center;
+        color: #64748b;
+        margin-bottom: 30px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 6px;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 12px;
+        padding: 10px 14px;
+        border: 1px solid #cbd5e1;
+        box-shadow: none;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.15);
+    }
+
+    .helptext,
+    .form-text,
+    ul {
+        font-size: 0.9rem;
+        color: #64748b;
+    }
+
+    ul {
+        padding-left: 20px;
+        margin-top: 8px;
+    }
+
+    .btn-signup {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: 0.3s ease;
+    }
+
+    .btn-signup:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 18px;
+        color: #64748b;
+    }
+
+    .login-link a {
+        text-decoration: none;
+        color: #2563eb;
+        font-weight: 600;
+    }
+
+    .errorlist {
+        color: #dc2626;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        list-style: none;
+        padding-left: 0;
+    }
+</style>
+
+<div class="signup-wrapper">
+    <div class="signup-card">
+        <h2 class="signup-title">Create Account</h2>
+        <p class="signup-subtitle">Join TaskPro and start managing your work better</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                {{ form.username }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                {{ form.phone }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                {{ form.role }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                {{ form.password1 }}
+                {% if form.password1.help_text %}
+                    <div class="form-text">{{ form.password1.help_text|safe }}</div>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                {{ form.password2 }}
+            </div>
+
+            <button type="submit" class="btn-signup">Create Account</button>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

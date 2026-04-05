@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h4>Update Project Progress</h4>
+    </div>
+    <div class="card-body">
+        <h5>{{ project.title }}</h5>
+        <p>{{ project.description }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Submit Update</button>
+            <a href="{% url 'project_list' %}" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

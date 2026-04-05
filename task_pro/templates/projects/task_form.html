@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header"><h4>{{ title }}</h4></div>
+    <div class="card-body">
+        {% if user.role == 'user' and task %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>Status</label>
+                    <select name="status" class="form-control">
+                        <option value="pending" {% if task.status == 'pending' %}selected{% endif %}>Pending</option>
+                        <option value="in_progress" {% if task.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                        <option value="completed" {% if task.status == 'completed' %}selected{% endif %}>Completed</option>
+                        <option value="overdue" {% if task.status == 'overdue' %}selected{% endif %}>Overdue</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Update Status</button>
+            </form>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Save</button>
+                <a href="{% url 'task_list' %}" class="btn btn-secondary">Back</a>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

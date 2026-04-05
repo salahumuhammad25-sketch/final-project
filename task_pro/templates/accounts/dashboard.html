@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Total Users</h5><h3>{{ total_users }}</h3></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Total Projects</h5><h3>{{ total_projects }}</h3></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Total Tasks</h5><h3>{{ total_tasks }}</h3></div></div>
+    </div>
+    <div class="col-md-3">
+        <div class="card shadow-sm"><div class="card-body"><h5>Completed Tasks</h5><h3>{{ completed_tasks }}</h3></div></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">Recent Projects</div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for project in my_projects %}
+                        <li class="list-group-item">{{ project.title }} - {{ project.status }}</li>
+                    {% empty %}
+                        <li class="list-group-item">No projects found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">Recent Tasks</div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for task in my_tasks %}
+                        <li class="list-group-item">{{ task.title }} - {{ task.status }}</li>
+                    {% empty %}
+                        <li class="list-group-item">No tasks found.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

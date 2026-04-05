@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Tasks</h2>
+    {% if user.role == 'admin' or user.role == 'manager' %}
+        <a href="{% url 'task_create' %}" class="btn btn-primary">Add Task</a>
+    {% endif %}
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Project</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.project.title }}</td>
+                    <td>{{ task.assigned_to }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>
+                        <a href="{% url 'task_detail' task.id %}" class="btn btn-sm btn-info">View</a>
+                        <a href="{% url 'task_update' task.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        {% if user.role == 'admin' or user.role == 'manager' %}
+                            <a href="{% url 'task_delete' task.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6">No tasks found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
